@@ -61,6 +61,19 @@ inputs:
     description: "Use Google Vertex AI with OIDC authentication instead of direct Anthropic API"
     required: false
     default: "false"
+  use_oauth:
+    description: "Use OAuth authentication instead of API key"
+    required: false
+    default: "false"
+  claude_access_token:
+    description: "Claude OAuth access token"
+    required: false
+  claude_refresh_token:
+    description: "Claude OAuth refresh token"
+    required: false
+  claude_expires_at:
+    description: "Claude OAuth token expiration timestamp"
+    required: false
 
   max_turns:
     description: "Maximum number of conversation turns"
@@ -123,6 +136,10 @@ runs:
         use_vertex: ${{ inputs.use_vertex }}
         anthropic_api_key: ${{ inputs.anthropic_api_key }}
         claude_env: ${{ inputs.claude_env }}
+        use_oauth: ${{ inputs.use_oauth }}
+        claude_access_token: ${{ inputs.claude_access_token }}
+        claude_refresh_token: ${{ inputs.claude_refresh_token }}
+        claude_expires_at: ${{ inputs.claude_expires_at }}
       env:
         # Model configuration
         ANTHROPIC_MODEL: ${{ inputs.model || inputs.anthropic_model }}
